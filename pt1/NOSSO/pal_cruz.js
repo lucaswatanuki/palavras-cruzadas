@@ -1,8 +1,8 @@
 var dadoAtual;
 var dadoMatriz;
 
-function matrizJogo(){
-    [                   [0  ,0  ,0  ,0  ,0  ,'b','i','f','e',0  ,0  ],
+function MatrizJogo(){
+    var celula = [      [0  ,0  ,0  ,0  ,0  ,'b','i','f','e',0  ,0  ],
                         [0  ,0  ,0  ,0  ,0  ,0  ,0  ,'e',0  ,0  ,0  ],
                         [0  ,0  ,0  ,0  ,'l',0  ,'m','i','o','j','o'],
                         [0  ,0  ,0  ,0  ,'a',0  ,0  ,'j',0  ,0  ,0  ],
@@ -27,8 +27,8 @@ function inicializar(){
                 var cel = linha.insertCell(-1);
 
                 if(dadoLinha[j] != 0){
-                    var txtID = String('texto' + '_' + i + '_' + j);
-                    cel.innerHTML ='<input type="text" class="inputBox" maxlength="1" style="text-transform: lowercase" ' + 'id="' + txtID + '" onfocus="textInputFocus(' + "'" + txtID + "'"+ ')">';
+                    var textoID = String('texto' + '_' + i + '_' + j);
+                    cel.innerHTML ='<input type="text" class="formulario" style="text-transform: lowercase" maxlength="1" ' + 'id="' + textoID + '">';
                 } else {
                     cel.style.backgroundColor = "black";
                 }
@@ -36,10 +36,6 @@ function inicializar(){
         }
         numeros_Dica();
     }
-
-        function textInputFocus(txtID123){
-            currentTextInput = txtID123;
-        }
 
 
         function numeros_Dica(){
