@@ -1,15 +1,5 @@
-tr{
-	margin: 0;
-	padding: 0;
-}
-
-td{
-	height: 10px;
-	width: 10px;
-}
-
 #palavras_cruzadas{
-    border: 1px solid black;
+    border: 1px solid blue;
     text-align: center;
     border-collapse: collapse;
 	margin: 0;
@@ -17,13 +7,29 @@ td{
 }
 
 .formulario{
-        border: 1px none black;
+        border: none;
         text-align: center;
         border-collapse: collapse;
-		width: 30px;
-		height:30px;
+		width: 50px;
+		height:50px;
+}
+
+td {
+    border: 1px solid black;
 }
 
 #fundo_jogo {
     float: left;
+    margin-right: 10px;
 }
+
+.escrita {
+    text-align: center;
+    border: 1px solid black;
+    width: 300px;
+    height: 494px;
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+

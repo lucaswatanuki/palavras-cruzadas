@@ -2,7 +2,7 @@ var dadoAtual;
 var dadoMatriz;
 
 function MatrizJogo(){
-    var celula = [      [0  ,0  ,0  ,0  ,0  ,'b','i','f','e',0  ,0  ],
+    var celula = [      [0  ,0  ,0  ,0  ,0  ,'b','i','f','e',0  ,0 ],
                         [0  ,0  ,0  ,0  ,0  ,0  ,0  ,'e',0  ,0  ,0  ],
                         [0  ,0  ,0  ,0  ,'l',0  ,'m','i','o','j','o'],
                         [0  ,0  ,0  ,0  ,'a',0  ,0  ,'j',0  ,0  ,0  ],
@@ -14,6 +14,9 @@ function MatrizJogo(){
 ]; 
 return celula;
 }
+
+
+
 
 function inicializar(){
     var tabela = document.getElementById("palavras_cruzadas");
