@@ -1,0 +1,35 @@
+#palavras_cruzadas{
+    border: 1px solid blue;
+    text-align: center;
+    border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+}
+
+.formulario{
+        border: none;
+        text-align: center;
+        border-collapse: collapse;
+		width: 50px;
+		height:50px;
+}
+
+td {
+    border: 1px solid black;
+}
+
+#fundo_jogo {
+    float: left;
+    margin-right: 10px;
+}
+
+.escrita {
+    text-align: center;
+    border: 1px solid black;
+    width: 300px;
+    height: 494px;
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
