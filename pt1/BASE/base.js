@@ -28,7 +28,7 @@ function inicializar(){
 
 			if(dadoLinha[j] != 0){
 				var txtID = String('texto' + '_' + i + '_' + j);
-				cel.innerHTML = '<input type="text" class="inputBox" maxlength="1" style="text-transform: lowercase" ' + 'id="' + txtID + '" onfocus="textInputFocus(' + "'" + txtID + "'"+ ')">';
+				cel.innerHTML = '<input type="text" class="inputBox" maxlength="1" style="text-transform: uppercase" ' + 'id="' + txtID + '" onfocus="textInputFocus(' + "'" + txtID + "'"+ ')">';
 			} else{
 				cel.style.backgroundColor  = "black";
 			}
