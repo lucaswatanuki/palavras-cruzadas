@@ -17,19 +17,34 @@
 td {
     border: 1px solid black;
 }
+h1{
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+h3{
+    text-align: center;
+}
 
 #fundo_jogo {
     float: left;
-    margin-right: 10px;
+   margin: 10px;
 }
 
 .escrita {
-    text-align: center;
+    text-align: left;
     border: 1px solid black;
+    padding-left: 10px;
     width: 300px;
     height: 494px;
     float: left;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin: 10px;
+}
+
+#botao{
+    margin: 10px;
+    width: 150px;
+    height: 50px;
 }
 

@@ -4,18 +4,16 @@ var dadoMatriz;
 function MatrizJogo(){
     var celula = [      [0  ,0  ,0  ,0  ,0  ,'b','i','f','e',0  ,0 ],
                         [0  ,0  ,0  ,0  ,0  ,0  ,0  ,'e',0  ,0  ,0  ],
-                        [0  ,0  ,0  ,0  ,'l',0  ,'m','i','o','j','o'],
-                        [0  ,0  ,0  ,0  ,'a',0  ,0  ,'j',0  ,0  ,0  ],
-                        [0  ,0  ,0  ,0  ,'s',0  ,0  ,'a',0  ,0  ,0  ],
-                        [0  ,0  ,0  ,0  ,'a','r','r','o','z',0  ,0  ],
-                        [0  ,0  ,0  ,0  ,'n',0  ,0  ,0  ,0  ,0  ,0  ],
+                        [0  ,'s',0  ,0  ,'l',0  ,'m','i','o','j','o'],
+                        [0  ,'a',0  ,0  ,'a',0  ,0  ,'j',0  ,0  ,0  ],
+                        [0  ,'l',0  ,0  ,'s',0  ,0  ,'a',0  ,0  ,0  ],
+                        [0  ,'a',0  ,0  ,'a','r','r','o','z',0  ,0  ],
+                        [0  ,'d',0  ,0  ,'n',0  ,0  ,0  ,0  ,0  ,0  ],
                         ['l','a','n','c','h','e',0  ,0  ,0  ,0  ,0  ],
                         [0  ,0  ,0  ,0  ,'a',0  ,0  ,0  ,0  ,0  ,0  ]
 ]; 
 return celula;
 }
-
-
 
 
 function inicializar(){
@@ -31,7 +29,7 @@ function inicializar(){
 
                 if(dadoLinha[j] != 0){
                     var textoID = String('texto' + '_' + i + '_' + j);
-                    cel.innerHTML ='<input type="text" class="formulario" style="text-transform: lowercase" maxlength="1" ' + 'id="' + textoID + '">';
+                    cel.innerHTML ='<input type="text" class="formulario" style="text-transform: uppercase" maxlength="1" ' + 'id="' + textoID + '">';
                 } else {
                     cel.style.backgroundColor = "black";
                 }
@@ -48,4 +46,22 @@ function inicializar(){
             document.getElementById("texto_7_0").placeholder = "4";
             document.getElementById("texto_2_4").placeholder = "5";
             document.getElementById("texto_0_7").placeholder = "6";
+            document.getElementById("texto_2_1").placeholder = "7";
         }
+
+
+function checar() {
+    for (var i = 0; i < dadoMatriz.length; i++) {
+        var dadoLinha = dadoMatriz[i];
+        for (var j = 0; j < dadoLinha.length; j++) {
+            if (dadoLinha[j] != 0) {
+                var celula = document.getElementById('texto' + '_' + i + '_' + j);
+                if (celula.value != dadoMatriz[i][j]) {
+                    celula.style.backgroundColor = 'red';
+                } else {
+                    celula.style.backgroundColor = 'green';
+                }
+            }    
+        }
+    }
+}
