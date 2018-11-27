@@ -28,7 +28,7 @@ function criaMatriz(){
 function display() {
 	for (var i = 0; i < lin; i++) {
 		for (var j = 0; j < col; j++) {
-			document.write(grid[i][j]);
+			document.write(grid[i][j] +",");
 		}
 		document.write("<br />");
 	}
@@ -52,8 +52,14 @@ function generate(firstword) {
 		if (!isEmpty(matches)){
 			
 			var current = coord[i-1];
+			var j = 0;
 
-			place(current[0]+matches[i-1][0],current[1]-matches[i-1][1], palavras[i], mode);
+			place(current[0]+matches[j][0],current[1]-matches[j][1], palavras[i], mode);
+
+			/*while (!place(current[0]+matches[j][0],current[1]-matches[j][1], palavras[i], mode)){
+				if (j == matches.length){ break;}
+				j++;
+			}*/
 			break;
 
 			/*document.write(currentword + " | " + palavras[i] + "<br />");
@@ -78,6 +84,8 @@ function generate(firstword) {
 function place(lin, col, word, vertical){
 	var l =lin;
 	var c = col;
+
+	document.write(lin + " : " +col + "<br/>");
 
 	for (var i = 0; i < word.length; i++) {
 		grid[lin][col] = word[i];
@@ -105,9 +113,9 @@ function letterMatch(palavra1, palavra2) {
 function main() {
 	criaMatriz();
 
-	firstword = palavras[4];
+	firstword = palavras[0];
 
-	first(firstword, 3, 10);
+	first(firstword, 2, 15);
 	
 	generate(firstword);
 	display();
