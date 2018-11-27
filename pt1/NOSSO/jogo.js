@@ -28,7 +28,7 @@ function criaMatriz(){
 function display() {
 	for (var i = 0; i < lin; i++) {
 		for (var j = 0; j < col; j++) {
-			document.write(grid[i][j] +",");
+			document.write(grid[i][j] +"|");
 		}
 		document.write("<br />");
 	}
@@ -45,21 +45,30 @@ function validate() {
 }
 
 function generate(firstword) {
+	
 	var mode = false
+	var v;
 	currentword = firstword;
+
 	for (var i = 1; i <= palavras.length; i++) {
+
 		matches = letterMatch(currentword, palavras[i]);
+
 		if (!isEmpty(matches)){
 			
 			var current = coord[i-1];
 			var j = 0;
 
-			place(current[0]+matches[j][0],current[1]-matches[j][1], palavras[i], mode);
-
-			/*while (!place(current[0]+matches[j][0],current[1]-matches[j][1], palavras[i], mode)){
-				if (j == matches.length){ break;}
-				j++;
-			}*/
+			while (j < matches.length){
+				v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), palavras[i], mode);
+				if (v) {
+					place(current[0]+matches[j][0], current[1]-matches[j][1], palavras[i], mode);
+					break;
+				}else{
+					j++;
+				}
+			}
+			
 			break;
 
 			/*document.write(currentword + " | " + palavras[i] + "<br />");
@@ -85,6 +94,7 @@ function place(lin, col, word, vertical){
 	var l =lin;
 	var c = col;
 
+	validate_place(lin, col, word, vertical);
 	document.write(lin + " : " +col + "<br/>");
 
 	for (var i = 0; i < word.length; i++) {
@@ -95,6 +105,18 @@ function place(lin, col, word, vertical){
 
 	inagrid.push(word);
 	coord.push([l, c, lin, col]);
+}
+
+function validate_place(letterpos, lin, col, word, vertical) {
+	//precisa melhorar
+	for (var i = 0; i < word.length; i++) {
+		if (grid[lin][col]!=0&&grid[lin][col]!=word[letterpos]){
+			return false;
+		}
+		if (vertical){ lin++; }
+		else{ col++; }
+	}
+	return true;
 }
 
 function letterMatch(palavra1, palavra2) {
