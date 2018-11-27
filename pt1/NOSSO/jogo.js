@@ -3,8 +3,8 @@ var grid = [];
 var inagrid = [];
 var coord = [];
 
-var lin = 15;
-var col = 30;
+var linhas = 15;
+var colunas = 30;
 
 var palavras = ['GREEN','BICYCLE','MOUNTAIN','SMARTY','ESTONIA','LATVIA','RIGA','TALLINN','ZEPPELIN','COW','DOG','CHEESE','HELLO','GOOGLE','LINUX'];
 
@@ -17,9 +17,9 @@ function isEmpty(obj) {
 }
 
 function criaMatriz(){
-    for (var i = 0; i < lin; i++) {
+    for (var i = 0; i < linhas; i++) {
         grid[i] = [];
-        for (var j = 0; j < col; j++) {
+        for (var j = 0; j < colunas; j++) {
             grid[i][j] = 0;
         }
     }
@@ -50,21 +50,20 @@ function generate(firstword) {
 			var j = 0;
 
 			while (j < matches.length){
-
-				
+		
 				if (mode){
 					//VERTICAL
 					v = validate_place(matches[j][1], (current[0]-matches[j][1]), (current[1]+matches[j][0]), mode);
 				}
 				else{
 					//HORIZONTAL
-					v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), palavras[i], mode);
+					v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), mode);
 				}
 				if (v) {
 
 					if (mode){
 						//VERTICAL
-						place(current[0]-matches[j][1], current[1]+matches[j][0], mode); 
+						place(current[0]-matches[j][1], current[1]+matches[j][0], palavras[i], mode); 
 					}
 					else{
 						//HORIZONTAL
@@ -82,15 +81,6 @@ function generate(firstword) {
 					j++;
 				}
 			}
-			
-			break;
-
-			/*document.write(currentword + " | " + palavras[i] + "<br />");
-
-			for (var c = 0; c < matches.length; c++) {
-				document.write("[" + matches[c] + "]" + " - ");
-			}
-			document.write("<br />"); */
 		}
 	}
 }
@@ -113,6 +103,9 @@ function place(lin, col, word, vertical){
 
 function validate_place(letterpos, lin, col, word, vertical) {
 	//precisa melhorar
+	if (lin < 0 || lin > linhas || col < 0 || col > colunas){
+		return false;
+	}
 	for (var i = 0; i < word.length; i++) {
 		if (grid[lin][col]!=0&&grid[lin][col]!=word[letterpos]){
 			return false;
@@ -142,7 +135,7 @@ function main() {
 
 	firstword = palavras[0];
 
-	place(2, 15, firstword, true);
+	place(6, 15, firstword, true);
 	
 	generate(firstword);
 
