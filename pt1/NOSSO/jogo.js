@@ -1,12 +1,28 @@
 var grid = [];
 
-var inagrid = [];
-var coord = [];
-
 var linhas = 15;
 var colunas = 30;
 
-var palavras = ['GREEN','BICYCLE','MOUNTAIN','SMARTY','ESTONIA','LATVIA','RIGA','TALLINN','ZEPPELIN','COW','DOG','CHEESE','HELLO','GOOGLE','LINUX'];
+var coord = [];
+
+var palavras = ['BICYCLE','SMARTY','GREEN','LINUX','MOUNTAIN','RIGA','ZEPPELIN','GOOGLE','TALLINN','ESTONIA','DOG','COW','LATVIA','HELLO','CHEESE'];
+
+function shuffle(array) {
+
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  while (0 !== currentIndex) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 function isEmpty(obj) {
     for(var prop in obj) {
@@ -38,11 +54,11 @@ function generate(firstword) {
 
 	var mode = false
 	var v;
-	currentword = firstword;
+	var currentword = firstword;
 
-	for (var i = 1; i < palavras.length; i++) {
+	for (var i = 1; i <= palavras.length; i++) {
 
-		matches = letterMatch(currentword, palavras[i]);
+		var matches = letterMatch(currentword, palavras[i]);
 
 		if (!isEmpty(matches)){
 			
@@ -97,7 +113,6 @@ function place(lin, col, word, vertical){
 		else { col++; }
 	}
 
-	inagrid.push(word);
 	coord.push([l, c, lin, col]);
 }
 
@@ -125,7 +140,6 @@ function letterMatch(palavra1, palavra2) {
 			}
 		}
 	}
-
 	return matches;
 }
 
@@ -133,12 +147,14 @@ function main() {
 
 	criaMatriz();
 
+	//palavras = shuffle(palavras);
+
 	firstword = palavras[0];
 
 	place(6, 15, firstword, true);
 	
 	generate(firstword);
-
+	//não esta chegando aqui
 	display();
 
 	for (var i = 0; i < coord.length; i++) {
