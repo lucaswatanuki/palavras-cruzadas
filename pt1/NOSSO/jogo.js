@@ -34,18 +34,8 @@ function display() {
 	}
 }
 
-function first(word, l, c) {
-
-	place(l, c, word, true);
-
-}
-
-function validate() {
-
-}
-
 function generate(firstword) {
-	
+
 	var mode = false
 	var v;
 	currentword = firstword;
@@ -60,11 +50,21 @@ function generate(firstword) {
 			var j = 0;
 
 			while (j < matches.length){
+
 				v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), palavras[i], mode);
+
 				if (v) {
+
 					place(current[0]+matches[j][0], current[1]-matches[j][1], palavras[i], mode);
+
+					currentword = palavras[i];
+
+					if (mode){ mode = false; }
+					else{ mode = true; }
+
 					break;
-				}else{
+				}
+				else{
 					j++;
 				}
 			}
@@ -77,15 +77,6 @@ function generate(firstword) {
 				document.write("[" + matches[c] + "]" + " - ");
 			}
 			document.write("<br />"); */
-
-			if (mode){
-				mode = false;
-			}else{
-				mode = true;
-			}
-
-			currentword = palavras[i];
-
 		}
 	}
 }
@@ -94,8 +85,7 @@ function place(lin, col, word, vertical){
 	var l =lin;
 	var c = col;
 
-	validate_place(lin, col, word, vertical);
-	document.write(lin + " : " +col + "<br/>");
+	document.write(word + " == [" + lin + " : " +col + "] <br/>");
 
 	for (var i = 0; i < word.length; i++) {
 		grid[lin][col] = word[i];
@@ -133,12 +123,14 @@ function letterMatch(palavra1, palavra2) {
 }
 
 function main() {
+
 	criaMatriz();
 
 	firstword = palavras[0];
 
-	first(firstword, 2, 15);
+	place(2, 15, firstword, true);
 	
 	generate(firstword);
+
 	display();
 }
