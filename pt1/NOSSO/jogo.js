@@ -51,17 +51,26 @@ function generate(firstword) {
 
 			while (j < matches.length){
 
-				//HORIZONTAL
-				v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), palavras[i], mode);
-
+				
+				if (mode){
+					//VERTICAL
+					v = validate_place(matches[j][1], (current[0]-matches[j][1]), (current[1]+matches[j][0]), mode);
+				}
+				else{
+					//HORIZONTAL
+					v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), palavras[i], mode);
+				}
 				if (v) {
 
-					//HORIZONTAL
-					place(current[0]+matches[j][0], current[1]-matches[j][1], palavras[i], mode);
+					if (mode){
+						//VERTICAL
+						place(current[0]-matches[j][1], current[1]+matches[j][0], mode); 
+					}
+					else{
+						//HORIZONTAL
+						place(current[0]+matches[j][0], current[1]-matches[j][1], palavras[i], mode);
+					}
 					
-				/*	VERTICAL
-					place(current[0]-matches[j][1], current[1]+matches[j][0], mode); */
-
 					currentword = palavras[i];
 
 					if (mode){ mode = false; }
