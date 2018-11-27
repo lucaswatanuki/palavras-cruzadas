@@ -4,7 +4,7 @@ var inagrid = [];
 var coord = [];
 
 var lin = 15;
-var col = 15;
+var col = 30;
 
 var palavras = ['GREEN','BICYCLE','MOUNTAIN','SMARTY','ESTONIA','LATVIA','RIGA','TALLINN','ZEPPELIN','COW','DOG','CHEESE','HELLO','GOOGLE','LINUX'];
 
@@ -28,56 +28,52 @@ function criaMatriz(){
 function display() {
 	for (var i = 0; i < lin; i++) {
 		for (var j = 0; j < col; j++) {
-			document.write(grid[i][j] + " ");
+			document.write(grid[i][j]);
 		}
 		document.write("<br />");
 	}
 }
 
-function first() {
-	var col = parseInt(11/2);
+function first(l, c) {
+	//var c = parseInt(col/2);
 	
 	firstword = palavras[0];
 
-	place(0, col, firstword, true);
+	place(l, c, firstword, true);
 
 }
 
-function validate(codcross, word, match, vertical) {
-	if (!vertical) {
-		var l = codcross[0]+match[0];
-		var c = codcross[3];
-		document.write( l+" : "+c  +" | "+grid[l][c] + "<br />");
-		if ((c-match[1])<0|| c + (word.length - match[1])){
-			return false;
-		}
-		var x = c-match[1];
-		for (var i = 0; i < word.length; i++) {
-			if (grid[l][x] != 0 || grid[l][c]!=word[match[1]]){
-				return false;
-			}
-		}
+function validate() {
 
-		return true;
-	}
 }
 
 function generate() {
-	var control = false;
+	var mode = false
 	currentword = palavras[0];
 	for (var i = 1; i <= palavras.length; i++) {
 		matches = letterMatch(currentword, palavras[i]);
 		if (!isEmpty(matches)){
 			
-			document.write(currentword + " | " + palavras[i] + "<br />");
+			var current = coord[i-1];
+
+			place(current[0]+matches[i-1][0],current[1]-matches[i-1][1], palavras[i], mode);
+			break;
+
+			/*document.write(currentword + " | " + palavras[i] + "<br />");
 
 			for (var c = 0; c < matches.length; c++) {
 				document.write("[" + matches[c] + "]" + " - ");
 			}
-			document.write("<br />"); 
+			document.write("<br />"); */
+
+			if (mode){
+				mode = false;
+			}else{
+				mode = true;
+			}
 
 			currentword = palavras[i];
-				
+
 		}
 	}
 }
@@ -111,7 +107,8 @@ function letterMatch(palavra1, palavra2) {
 
 function main() {
 	criaMatriz();
-	first();
-	display();
+	first(6, 10);
+	
 	generate();
+	display();
 }
