@@ -40,7 +40,7 @@ function generate(firstword) {
 	var v;
 	currentword = firstword;
 
-	for (var i = 1; i <= palavras.length; i++) {
+	for (var i = 1; i < palavras.length; i++) {
 
 		matches = letterMatch(currentword, palavras[i]);
 
@@ -51,11 +51,16 @@ function generate(firstword) {
 
 			while (j < matches.length){
 
+				//HORIZONTAL
 				v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), palavras[i], mode);
 
 				if (v) {
 
+					//HORIZONTAL
 					place(current[0]+matches[j][0], current[1]-matches[j][1], palavras[i], mode);
+					
+				/*	VERTICAL
+					place(current[0]-matches[j][1], current[1]+matches[j][0], mode); */
 
 					currentword = palavras[i];
 
@@ -133,4 +138,8 @@ function main() {
 	generate(firstword);
 
 	display();
+
+	for (var i = 0; i < coord.length; i++) {
+		document.write("[" + coord[i] + "] <br />");
+	}
 }
