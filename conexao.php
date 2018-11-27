@@ -18,25 +18,27 @@ linha 6: PRIMARY KEY  (`palavra`,`id_grupo`) (exclusao da virgual final, para cr
 linha 10-31: INSERT INTO `palavras` VALUES (adicionado o 's' em 'palavras', para a inserção correta na tabela).
 */
 
-try{
-    $username = "root";
-    $password = "";
+function conectar(){ //IMPLEMENTAÇÃO DO PDO EM FUNÇÃO, PARA APENAS CHAMAR A FUNÇÃO conectar() NA PÁGINA.
+    try{
+        $username = "root";
+        $password = "";
 
-    $id;
-    $conn = new PDO('mysql:host=localhost;dbname=banco_palavras', $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = new PDO('mysql:host=localhost;dbname=banco_palavras', $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->query("SELECT * FROM palavras");
-    
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<p>id_grupo: ".$row["id_grupo"]."</p>";
-        echo "<p>palavra: ".$row["palavra"]."</p>";
-        }        
-
+        $stmt = $conn->query("SELECT * FROM palavras"); //statement para consulta (query)
+        
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  //exemplo de retorno da consulta. Deve se fazer por post para implementar na pagina.
+            echo "<p>id_grupo: ".$row["id_grupo"]."</p>";
+            echo "<p>palavra: ".$row["palavra"]."</p>";
+            }
+    }
+    catch(PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage(); //aqui pode se adicionar um script de retorno junto com o tratamento.
+    }
 }
-catch(PDOException $e) {
-    echo 'ERROR: ' . $e->getMessage();
-}
+
+conectar(); //teste da função
 
 ?>
 </body>
