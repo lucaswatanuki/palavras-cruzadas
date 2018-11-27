@@ -6,15 +6,12 @@ var grid = [];
 var palavras = ['GREEN','BICYCLE','MOUNTAIN','SMARTY','ESTONIA','LATVIA','RIGA','TALLINN','ZEPPELIN','COW','DOG','CHEESE','HELLO','GOOGLE','LINUX'];
 
 function criaMatriz(lin, col){
-
     for (var i = 0; i < lin; i++) {
         grid[i] = [];
         for (var j = 0; j < col; j++) {
             grid[i][j] = 0;
         }
     }
-
-    return grid;
 }
 
 function suggest_coord(word){
@@ -115,7 +112,7 @@ function set_cell(col, row, value){
 }
 
 function check_fit_score(col, row, vertical, word){
-    if (col < 1 or row < 1){
+    if (col < 1 || row < 1){
         return 0;
     }
     var count = 1;
@@ -151,8 +148,9 @@ function check_fit_score(col, row, vertical, word){
             }
 
             if (count == 1){
-                if (!check_if_cell_clear(col, row-1)):
+                if (!check_if_cell_clear(col, row-1)){
                     return 0;
+                    }
             }
 
             if (count == word.length){
@@ -178,10 +176,8 @@ function check_if_cell_clear(col, row){
             return true;
         }
     }catch(e){
-        continue;
+        return false;
     }
-
-    return false;
 }
 
 function get_cell(col, row){
@@ -214,14 +210,8 @@ function compute_crossword(){
 }
 
 function MatrizJogo(){
-    var tabuleiro = criaMatriz(9, 11);
-
-    for (var i = 0; i < palavras.length; i++) {
-        document.write(palavras[i] + '<br/>');
-        
-    }
-
-    return tabuleiro;
+    criaMatriz(9, 11);
+    document.write(grid);
 }
 
 function inicializar(){
