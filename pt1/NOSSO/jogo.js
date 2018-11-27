@@ -34,12 +34,9 @@ function display() {
 	}
 }
 
-function first(l, c) {
-	//var c = parseInt(col/2);
-	
-	firstword = palavras[0];
+function first(word, l, c) {
 
-	place(l, c, firstword, true);
+	place(l, c, word, true);
 
 }
 
@@ -47,9 +44,9 @@ function validate() {
 
 }
 
-function generate() {
+function generate(firstword) {
 	var mode = false
-	currentword = palavras[0];
+	currentword = firstword;
 	for (var i = 1; i <= palavras.length; i++) {
 		matches = letterMatch(currentword, palavras[i]);
 		if (!isEmpty(matches)){
@@ -107,8 +104,11 @@ function letterMatch(palavra1, palavra2) {
 
 function main() {
 	criaMatriz();
-	first(6, 10);
+
+	firstword = palavras[4];
+
+	first(firstword, 3, 10);
 	
-	generate();
+	generate(firstword);
 	display();
 }
