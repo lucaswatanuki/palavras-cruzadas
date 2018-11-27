@@ -211,6 +211,7 @@ function compute_crossword(){
 
 function MatrizJogo(){
     criaMatriz(9, 11);
+    compute_crossword();
     document.write(grid);
 }
 
