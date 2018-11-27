@@ -28,7 +28,7 @@ function criaMatriz(){
 function display() {
 	for (var i = 0; i < lin; i++) {
 		for (var j = 0; j < col; j++) {
-			document.write(grid[i][j] +"|");
+			 document.write(grid[i][j] +"|");
 		}
 		document.write("<br />");
 	}
