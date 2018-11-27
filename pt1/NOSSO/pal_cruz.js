@@ -1,5 +1,6 @@
 var dadoAtual;
 var dadoMatriz;
+var dadoMatrizUpper;
 
 function MatrizJogo(){
     var celula = [      [0  ,0  ,0  ,0  ,0  ,'b','i','f','e',0  ,0 ],
@@ -15,10 +16,25 @@ function MatrizJogo(){
 return celula;
 }
 
+function MatrizJogoUpper() {
+    var celulaUpper =   [[0, 0, 0, 0, 0, 'B', 'I', 'F', 'E', 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0, 'E', 0, 0, 0],
+                        [0, 'S', 0, 0, 'L', 0, 'M', 'I', 'O', 'J','O'],
+                        [0, 'A', 0, 0, 'A', 0, 0, 'J', 0, 0, 0],
+                        [0, 'L', 0, 0, 'S', 0, 0, 'A', 0, 0, 0],
+                        [0, 'A', 0, 0, 'A', 'R', 'R', 'O', 'Z', 0, 0],
+                        [0, 'D', 0, 0, 'N', 0, 0, 0, 0, 0, 0],
+                        ['L', 'A', 'N', 'C', 'H', 'E', 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 'A', 0, 0, 0, 0, 0, 0]
+                        ];
+    return celulaUpper;
+}
+
 
 function inicializar(){
     var tabela = document.getElementById("palavras_cruzadas");
     dadoMatriz = MatrizJogo();
+    dadoMatrizUpper = MatrizJogoUpper();
 
         for (var i=0 ; i < dadoMatriz.length ; i++){
             var linha = tabela.insertRow(-1);
@@ -55,13 +71,20 @@ function checar() {
         var dadoLinha = dadoMatriz[i];
         for (var j = 0; j < dadoLinha.length; j++) {
             if (dadoLinha[j] != 0) {
-                var celula = document.getElementById('texto' + '_' + i + '_' + j);
-                if (celula.value != dadoMatriz[i][j]) {
-                    celula.style.backgroundColor = 'red';
+                var elemento = document.getElementById('texto' + '_' + i + '_' + j);
+                if ((elemento.value != dadoMatriz[i][j]) && (elemento.value != dadoMatrizUpper[i][j])) {
+                    elemento.style.backgroundColor = 'red';
                 } else {
-                    celula.style.backgroundColor = 'green';
+                    elemento.style.backgroundColor = 'green';
                 }
             }    
         }
     }
+}
+
+function reiniciar() {
+    currentTextInput = '';
+    var tabela = document.getElementById("palavras_cruzadas");
+    tabela.innerHTML = '';
+    inicializar();
 }
