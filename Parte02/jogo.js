@@ -1,10 +1,3 @@
-/*
-	Titulo: 	CrossWordsGenerator
-	Autor: 		Henrique Campiotti Marques
-	GitHub: 	github.com/sr-henry
-	Data: 		27/NOV/2018
-*/
-
 //Matriz do jogo (Tabuleiro)
 var grid = [];
 
