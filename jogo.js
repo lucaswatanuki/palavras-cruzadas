@@ -27,7 +27,6 @@ function shuffle(array) {
 
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
@@ -217,30 +216,38 @@ function inicializar(){
         numeros_Dica();
     }
 
-
 function numeros_Dica(){
-    document.getElementById("texto_0_5").placeholder = "1";
-    document.getElementById("texto_2_6").placeholder = "2";
-    document.getElementById("texto_5_4").placeholder = "3";
-    document.getElementById("texto_7_0").placeholder = "4";
-    document.getElementById("texto_2_4").placeholder = "5";
-    document.getElementById("texto_0_7").placeholder = "6";
-    document.getElementById("texto_2_1").placeholder = "7";
+	for (var i = 0; i < coord.length; i++) {
+		document.getElementById("texto_"+coord[i][0]+"_"+coord[i][1]).placeholder = i+1;
+	}
+    
 }
 
-
 function checar() {
-    for (var i = 0; i < dadoMatriz.length; i++) {
-        var dadoLinha = dadoMatriz[i];
-        for (var j = 0; j < dadoLinha.length; j++) {
-            if (dadoLinha[j] != 0) {
-                var celula = document.getElementById('texto' + '_' + i + '_' + j);
-                if (celula.value != dadoMatriz[i][j]) {
-                    celula.style.backgroundColor = 'red';
-                } else {
-                    celula.style.backgroundColor = 'green';
-                }
-            }    
-        }
-    }
+	for (var i = 0; i < linhas; i++) {
+		for (var j = 0; j < colunas; j++) {
+			if (grid[i][j] != 0) {
+				var elemento = document.getElementById('texto' + '_' + i + '_' + j);
+				var letra = elemento.value;
+				letra = letra.toUpperCase();
+					if (letra != grid[i][j]) {
+						elemento.style.backgroundColor = 'red';
+					} 
+					else {
+						elemento.style.backgroundColor = 'green';
+					}
+				} 
+			}
+	}
+}
+
+function limpar() {
+	for (var i = 0; i < linhas; i++) {
+		for (var j = 0; j < colunas; j++) {
+			if (grid[i][j] != 0) {
+				var elemento = document.getElementById('texto' + '_' + i + '_' + j);
+					elemento.style.backgroundColor = 'white';
+				} 
+			}
+	}
 }
