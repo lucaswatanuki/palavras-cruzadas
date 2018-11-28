@@ -12,14 +12,26 @@
 
 	<body onload="inicializar()">
 
+		<div id="superior">
+			<input class="botao" type="submit" value="Checar" onclick="checar()">
+	    	<input class="botao" type="submit" value="Limpar" onclick="limpar()">
+		</div>
+
 	    <div id="fundo_jogo">
 	        <table id="palavras_cruzadas">
 
 	        </table>
-	    </div>
+		</div>
+		
+		<div id="dica">
+			<h3>DICA</h3>
+			<hr>
+			<p class="subtitulo">Os índices indicam se está na vertical ou horizontal.</p>
+			<p class="subtitulo">Ímpares = Vertical | Pares = Horizontal </p>
+			<hr>
 
-	    <input class="botao" type="submit" value="Checar" onclick="checar()">
-	    <input class="botao" type="submit" value="Limpar" onclick="limpar()">
+			<p>dicas aqui</p>
+		</div>
 
 	</body>
 </html> 

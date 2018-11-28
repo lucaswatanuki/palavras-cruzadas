@@ -1,16 +1,23 @@
+body {
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
 .grid{
     font-family: "Courier New";
 }
 
 #palavras_cruzadas{
-    border: 1px solid blue;
+    border: 0px solid blue;
     text-align: center;
     border-collapse: collapse;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 }
 
 .formulario{
+        font-family: 'Courier New', Courier, monospace;
         border: none;
         text-align: center;
         border-collapse: collapse;
@@ -19,7 +26,7 @@
 }
 
 td {
-    border: 1px solid black;
+    border: 0px solid black;
 }
 h1{
     text-align: center;
@@ -32,23 +39,25 @@ h3{
 }
 
 #fundo_jogo {
-    float: left;
-   margin: 10px;
-}
-
-.escrita {
-    text-align: left;
-    border: 1px solid black;
-    padding-left: 10px;
-    width: 300px;
-    height: 494px;
-    float: left;
-    margin: 10px;
+   margin-top: 10px;
+   margin-bottom: 10px;
 }
 
 #botao{
     margin: 10px;
     width: 150px;
     height: 50px;
+}
+
+#dica {
+    width: 65%;
+    border: 1px solid black;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.subtitulo {
+    color: grey;
+    font-size: 11px;
 }
 
