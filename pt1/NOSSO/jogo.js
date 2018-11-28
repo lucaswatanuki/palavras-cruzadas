@@ -41,7 +41,7 @@ function criaMatriz(){
     }
 }
 
-function display() {
+function display(grid) {
 	for (var i = 0; i < lin; i++) {
 		for (var j = 0; j < col; j++) {
 			document.write(grid[i][j] +"|");
@@ -50,23 +50,50 @@ function display() {
 	}
 }
 
+function furone() {
+	for (var i = 0; i < coord.length; i++) {
+		document.write(palavras[i] + ":");
+		document.write("["+coord[i]+"]/");
+	}
+}
+
 function generate(firstword) {
 
-	var mode = false
+	document.write("<h3>##Genrate##</h3><br/>");
+
+	var mode = false;
 	var v;
+	var j;
+	var current;
+	var matches;
 	var currentword = firstword;
 
-	for (var i = 1; i <= palavras.length; i++) {
+	for (var i = 1; i < palavras.length; i++) {
 
-		var matches = letterMatch(currentword, palavras[i]);
+		document.write("Contador: " + i +" | Total: " + palavras.length +"<br />");
+
+		matches = letterMatch(currentword, palavras[i]);
 
 		if (!isEmpty(matches)){
 			
-			var current = coord[i-1];
-			var j = 0;
+			for (var m = 0; m < matches.length; m++) {
+				document.write("[" + matches[m] + "]/");
+			}document.write("<br />");
+
+			current = coord[i-1];
+
+			if (!current) {
+				current = coord[coord.length-1];
+				//document.write("#ERRO#<br />" + current);
+				//furone();
+			}
+
+			document.write(current);
+
+			j = 0;
 
 			while (j < matches.length){
-		
+				document.write("@Loop / ");
 				if (mode){
 					//VERTICAL
 					v = validate_place(matches[j][1], (current[0]-matches[j][1]), (current[1]+matches[j][0]), mode);
@@ -99,13 +126,15 @@ function generate(firstword) {
 			}
 		}
 	}
+
+	document.write("Aeeeeeeeee <br />");
 }
 
 function place(lin, col, word, vertical){
 	var l =lin;
 	var c = col;
 
-	document.write(word + " == [" + lin + " : " +col + "] <br/>");
+	document.write("Function Place: " + word + " == [" + lin + " : " +col + "] <br/>");
 
 	for (var i = 0; i < word.length; i++) {
 		grid[lin][col] = word[i];
@@ -154,10 +183,7 @@ function main() {
 	place(6, 15, firstword, true);
 	
 	generate(firstword);
-	//não esta chegando aqui
-	display();
+	
+	display(grid);
 
-	for (var i = 0; i < coord.length; i++) {
-		document.write("[" + coord[i] + "] <br />");
-	}
 }
