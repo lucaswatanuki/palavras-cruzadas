@@ -60,7 +60,7 @@ function display() {
 	document.write("<h3>##Matriz##</h3>")
 	for (var i = 0; i < linhas; i++) {
 		for (var j = 0; j < colunas; j++) {
-			document.write(grid[i][j] +" ");
+			document.write(grid[i][j] +"    ");
 		}
 		document.write("<br />");
 	}
@@ -132,7 +132,7 @@ function place(lin, col, word, vertical){
 	var l =lin;
 	var c = col;
 
-	document.write("Function Place: " + word + " == [" + lin + " : " +col + "] <br/>");
+	//document.write("Function Place: " + word + " == [" + lin + " : " +col + "] <br/>");
 
 	for (var i = 0; i < word.length; i++) {
 		grid[lin][col] = word[i];
@@ -180,7 +180,7 @@ function main() {
 
 	firstword = palavras[0];
 
-	document.write("<h3>##Genrate##</h3><br/>");
+	//document.write("<h3>##Genrate##</h3><br/>");
 
 	//document.write(palavras + "<br />");
 
@@ -188,6 +188,59 @@ function main() {
 	
 	generate(firstword);
 	
-	display();
+	//display();
 
+}
+
+function inicializar(){
+    var tabela = document.getElementById("palavras_cruzadas");
+
+    main();
+
+    dadoMatriz = grid;
+
+        for (var i=0 ; i < dadoMatriz.length ; i++){
+            var linha = tabela.insertRow(-1);
+            var dadoLinha = dadoMatriz[i];
+
+            for(var j=0 ; j < dadoLinha.length ; j++){
+                var cel = linha.insertCell(-1);
+
+                if(dadoLinha[j] != 0){
+                    var textoID = String('texto' + '_' + i + '_' + j);
+                    cel.innerHTML ='<input type="text" class="formulario" style="text-transform: uppercase" maxlength="1" ' + 'id="' + textoID + '">';
+                } else {
+                    cel.style.backgroundColor = "black";
+                }
+            }
+        }
+        numeros_Dica();
+    }
+
+
+function numeros_Dica(){
+    document.getElementById("texto_0_5").placeholder = "1";
+    document.getElementById("texto_2_6").placeholder = "2";
+    document.getElementById("texto_5_4").placeholder = "3";
+    document.getElementById("texto_7_0").placeholder = "4";
+    document.getElementById("texto_2_4").placeholder = "5";
+    document.getElementById("texto_0_7").placeholder = "6";
+    document.getElementById("texto_2_1").placeholder = "7";
+}
+
+
+function checar() {
+    for (var i = 0; i < dadoMatriz.length; i++) {
+        var dadoLinha = dadoMatriz[i];
+        for (var j = 0; j < dadoLinha.length; j++) {
+            if (dadoLinha[j] != 0) {
+                var celula = document.getElementById('texto' + '_' + i + '_' + j);
+                if (celula.value != dadoMatriz[i][j]) {
+                    celula.style.backgroundColor = 'red';
+                } else {
+                    celula.style.backgroundColor = 'green';
+                }
+            }    
+        }
+    }
 }
