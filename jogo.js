@@ -16,7 +16,7 @@ var colunas = 30;
 var coord = [];
 
 //Lista de palavras para gerar o jogo
-var palavras = ['TALLINN','MOUNTAIN','RIGA','SMARTY','CHEESE','COW','BICYCLE','GREEN','LINUX','ZEPPELIN','GOOGLE','ESTONIA','DOG','LATVIA','HELLO'];
+var palavras = ['TALLINN','MOUNTAIN','RIGA','SMARTY','CHEESE','COW','BICYCLE','GREEN','LINUX','ZEPPELIN','GOOGLE','ESTONIA','DOG','LATVIA','HELLO','PEOPLE'];
 
 //Função para embaralhar a Lista de palavras
 function shuffle(array) {
@@ -153,8 +153,8 @@ function validate_place(letterpos, lin, col, word, vertical) {
 		if (grid[lin][col]!=0 && grid[lin][col]!=word[letterpos]){
 			return false;
 		}
-		if (vertical){ lin++; }
-		else{ col++; }
+		if (vertical){ lin++; if (lin == linhas){return false;} }
+		else{ col++; if (col == colunas){return false;}}
 	}
 	return true;
 }
