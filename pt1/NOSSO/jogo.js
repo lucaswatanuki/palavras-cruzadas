@@ -93,12 +93,12 @@ function generate(firstword) {
 			while (j < matches.length){
 				//document.write("@Loop / ");
 				if (mode){
-					//VERTICAL 			
-					v = validate_place(matches[j][1], (current[0]-matches[j][1]), (current[1]+matches[j][0]), mode);
+					//VERTICAL 			letterpos, lin, col, word, vertical
+					v = validate_place(matches[j][1], (current[0]-matches[j][1]), (current[1]+matches[j][0]), palavras[i], mode);
 				}
 				else{
 					//HORIZONTAL
-					v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), mode);
+					v = validate_place(matches[j][1] ,(current[0]+matches[j][0]), (current[1]-matches[j][1]), palavras[i], mode);
 				}
 				if (v) {
 
@@ -145,11 +145,14 @@ function place(lin, col, word, vertical){
 
 function validate_place(letterpos, lin, col, word, vertical) {
 	//precisa melhorar
+	//document.write("Validate: " + letterpos + "/<br/>");
 	if (lin < 0 || lin > linhas || col < 0 || col > colunas){
 		return false;
 	}
+	
 	for (var i = 0; i <= word.length; i++) {
 		if (grid[lin][col]!=0 && grid[lin][col]!=word[letterpos]){
+			//document.write("Verificando: " + grid[lin][col] + " | ");
 			return false;
 		}
 		if (vertical){ lin++; }
