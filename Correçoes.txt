@@ -1,5 +1,0 @@
-arquivo banco_palavras.sql:
-
-linha 6: PRIMARY KEY  (`palavra`,`id_grupo`) (exclusao da virgual final, para criação da tabela)
-
-linha 10-31: INSERT INTO `palavras` VALUES (adicionado o 's' em 'palavras', para a inserção correta na tabela).
